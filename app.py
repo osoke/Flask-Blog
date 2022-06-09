@@ -205,6 +205,7 @@ def delete_post(post_id):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
+    # app.run(host='0.0.0.0', port=5000)
     # app.run(debug=True)
     # db.create_all() # 初始化DB

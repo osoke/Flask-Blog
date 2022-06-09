@@ -11,6 +11,7 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -22,6 +23,7 @@ gravatar = Gravatar(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///blog.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+migrate = Migrate(app, db) # 数据迁移引擎实例化
 login_manager = LoginManager()  # 登录管理器
 login_manager.init_app(app)  # 配置app
 
@@ -203,7 +205,6 @@ def delete_post(post_id):
 
 
 if __name__ == "__main__":
-    db.create_all() # 初始化DB
-    app.run()
-    # app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
     # app.run(debug=True)
+    # db.create_all() # 初始化DB

@@ -69,6 +69,10 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer, ForeignKey('blog_posts.id')) # 隐藏属性 post
     text = db.Column(db.Text, nullable=False)
 
+class Comment1(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.Text, nullable=False)
+
 
 # 初始化DB - 仅运行1次
 # db.create_all()
